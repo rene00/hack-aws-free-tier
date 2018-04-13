@@ -181,7 +181,7 @@ output "public_dns" {
   value = "${aws_instance.host.public_dns}"
 }
 
-resource "aws_db_instance" "db" {
+resource "aws_db_instance" "mydb" {
   allocated_storage                   = 20
   availability_zone                   = "ap-southeast-2a"
   auto_minor_version_upgrade          = true
@@ -191,14 +191,14 @@ resource "aws_db_instance" "db" {
   engine                              = "postgres"
   engine_version                      = "9.6.6"
   iam_database_authentication_enabled = false
-  identifier                          = "db"
+  identifier                          = "mydb"
   instance_class                      = "db.t2.micro"
   iops                                = 0
   license_model                       = "postgresql-license"
   maintenance_window                  = "sat:14:15-sat:14:45"
   monitoring_interval                 = 0
   multi_az                            = false
-  name                                = "db"
+  name                                = "mydb"
   option_group_name                   = "default:postgres-9-6"
   parameter_group_name                = "default.postgres9.6"
   port                                = 5432
@@ -213,5 +213,5 @@ resource "aws_db_instance" "db" {
 }
 
 output "address" {
-  value = "${aws_db_instance.db.address}"
+  value = "${aws_db_instance.mydb.address}"
 }
