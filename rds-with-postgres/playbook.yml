@@ -1,0 +1,25 @@
+- hosts: all
+  tasks:
+    - name: install aptitude
+      apt:
+        name: aptitude
+        state: present
+
+    - name: apt update and upgrade packages
+      apt:
+        upgrade: full
+        update_cache: yes
+        cache_valid_time: 86400
+
+    - name: install postgresql-client
+      apt:
+        name: postgresql-client
+        state: present
+
+    - name: create eth1.cfg
+      copy:
+        content: 'auto eth1\niface eth1 inet dhcp'
+        dest: /etc/network/interfaces.d/eth1.cfg
+
+    - name: restart networking
+      command: systemctl restart network
