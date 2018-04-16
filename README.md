@@ -1,3 +1,3 @@
 # What?
 
-Terraform AWS configs which make use of the [Free Tier](https://aws.amazon.com/free/).
+code, docs and terraform config for hacking on the AWS [free tier](https://aws.amazon.com/free/).
