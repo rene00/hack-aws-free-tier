@@ -1,0 +1,30 @@
+{
+  "StartAt": "Main",
+  "States": {
+    "Main": {
+      "Type": "Task",
+      "Resource": "${function_main_arn}",
+      "Next": "Success",
+      "Catch": [
+        {
+          "ErrorEquals": ["TestError"],
+          "Next": "CatchError"
+        }
+      ]
+    },
+    "CatchError": {
+      "Type": "Task",
+      "Resource": "${function_error_arn}",
+      "Next": "FailState"
+    },
+    "FailState": {
+      "Type": "Pass",
+      "Result": "handled error",
+      "End": true
+    },
+    "Success": {
+      "Type": "Pass",
+      "End": true
+    }
+  }
+}
